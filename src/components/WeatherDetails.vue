@@ -4,7 +4,7 @@
             <v-row>
                 <v-col lg="6" class="pa-0 d-flex align-center">
                     <v-img
-                        :lazy-src="iconUrl"
+                        lazy-src="@/assets/weather icon.png"
                         :src="iconUrl"
                         height="80px"
                         width="80px"

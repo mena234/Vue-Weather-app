@@ -14,14 +14,14 @@
                 </div>
                 <div class="d-flex align-center">
                     <v-img
-                        :lazy-src="iconUrl"
+                        lazy-src="@/assets/weather icon.png"
                         :src="iconUrl"
                         height="60px"
                         width="60px"
                     >
                     </v-img>
                     <div
-                        class="d-flex flex-column justify-space-between mr-3 text-right"
+                        class="d-flex flex-column justify-space-between mr-3 ml-2 text-right"
                     >
                         <div class="mb-2">{{ maxTemp | celsius }}</div>
                         <div class="grey--text">{{ minTemp | celsius }}</div>

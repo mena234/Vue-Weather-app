@@ -94,7 +94,7 @@ export default {
                 async (position) => {
                     this.latitude = position.coords.latitude;
                     this.longitude = position.coords.longitude;
-                    // await this.setInitialData()
+                    await this.setInitialData()
                 }
             );
         }
