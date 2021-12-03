@@ -33,7 +33,7 @@
                         {{ dayTemp[0] }}
                     </div>
                     <div class="text-caption" style="grid-area: 3 / 1 / 4 / 2">
-                        {{ roundNumber(currentDay.temp.max) }}°C
+                        {{ maxTemp }}°C
                     </div>
                     <div class="text-h3 pt-2" style="grid-area: 1 / 2 / 4 / 3">
                         {{ dayTemp[1] }}
@@ -42,7 +42,7 @@
                         class="text-caption grey--text"
                         style="grid-area: 3 / 2 / 4 / 3"
                     >
-                        {{ roundNumber(currentDay.temp.min) }}°C
+                        {{ minTemp }}°C
                     </div>
                     <div class="text-h6 pt-2" style="grid-area: 1 / 3 / 2 / 4">
                         °C
@@ -58,31 +58,33 @@
             <v-col lg="3" xl="3" sm="6" class="d-flex flex-column">
                 <v-row class="pa-0 ma-0 text-body-2">
                     <span class="grey--text mr-1">Precipitation: </span>
-                    <span>{{ roundNumber(currentDay.pop * 100) }}%</span>
+                    <span>{{ precipitation }}%</span>
                 </v-row>
                 <v-row class="pa-0 ma-0 text-body-2">
                     <span class="grey--text mr-1">Humidity: </span>
-                    <span>{{ currentDay.humidity }}%</span>
+                    <span>{{ humidity }}%</span>
                 </v-row>
                 <v-row class="pa-0 ma-0 text-body-2">
                     <span class="grey--text mr-1">Wind: </span>
-                    <span>{{ roundNumber(currentDay.wind_speed) }}m/s</span>
+                    <span>{{ windSpeed }}m/s</span>
                 </v-row>
             </v-col>
             <v-spacer></v-spacer>
             <v-col lg="3" xl="3" sm="6" class="d-flex flex-column align-center text-body-6 mt-1">
                 <v-row class="pa-0 ma-0 font-weight-black">CITY NAME</v-row>
-                <v-row class="pa-0 ma-0">{{ index === 0 ? 'Today' : currentDate }}</v-row>
-                <v-row class="pa-0 ma-0">{{ currentDay.weather[0].description }}</v-row>
+                <v-row class="pa-0 ma-0">{{ currentDate }}</v-row>
+                <v-row class="pa-0 ma-0">{{ description }}</v-row>
             </v-col>
         </v-col>
     </v-row>
 </template>
 
 <script>
-import roundNumberMixin from '@/mixins/roundNumberMixin'
+import roundNumberMixin from '@/mixins/roundNumberMixin';
+import weatherCalcMixin from '@/mixins/weatherCalcMixin'
+
 export default {
-    mixins: [roundNumberMixin],
+    mixins: [roundNumberMixin, weatherCalcMixin],
     props: {
         weekDays: Array,
         currentDay: Object,
@@ -94,12 +96,6 @@ export default {
         };
     },
     computed: {
-        url() {
-            return `https://api.openweathermap.org/data/2.5/onecall?lat=${this.latitude}&lon=${this.longitude}&exclude=hourly&appid=${this.api_token}&lang=${this.lang}&units=${this.units}`;
-        },
-        iconUrl() {
-            return `http://openweathermap.org/img/wn/${this.currentDay.weather[0]?.icon}@2x.png`;
-        },
         dayTemp() {
             if (this.currentDay.temp.day) {
                 const roundValueOfTempOfDay = Math.round(
@@ -114,9 +110,6 @@ export default {
                 return [""];
             }
         },
-        currentDate() {
-            return new Date(this.currentDay.dt * 1000).toDateString();
-        }
     }
 };
 </script>
