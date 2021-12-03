@@ -4,10 +4,11 @@
             <v-expansion-panels>
                 <v-expansion-panel>
                     <v-expansion-panel-header>
-                        <WeatherDetails></WeatherDetails>
+                        <WeatherDetails :index="index" :weekDays="weekDays" :currentDay="currentDay"></WeatherDetails>
                     </v-expansion-panel-header>
                     <v-expansion-panel-content>
-                        Some content
+                        <v-divider></v-divider>
+                        <WeekDaysWeather class="mt-5" @changeCurrentDay="changeCurrentDay" :weekDays="weekDays"></WeekDaysWeather>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
             </v-expansion-panels>
@@ -18,9 +19,11 @@
 <script>
 import axios from "axios";
 import WeatherDetails from './WeatherDetails.vue';
+import WeekDaysWeather from './WeekDaysWeather.vue';
 export default {
     components: {
-        WeatherDetails
+        WeatherDetails,
+        WeekDaysWeather
     },
     data() {
         return {
@@ -31,38 +34,38 @@ export default {
             icon: "",
             weekDays: [],
             units: "metric",
+            currentDay: {
+                clouds: "",
+                dew_point: 0,
+                dt: 0,
+                feels_like: {},
+                humidity: 0,
+                moon_phase: 0,
+                moonrise: 0,
+                moonset: 0,
+                pop: 0,
+                pressure: 0,
+                sunrise: 0,
+                sunset: 0,
+                temp: {
+                    day: 0,
+                    min: 0,
+                    max: 0,
+                },
+                uvi: 0,
+                weather: [{
+                    description: '',
+                }],
+                wind_deg: 0,
+                wind_gust: 0,
+                wind_speed: 0,
+            },
+            index: 0,
         };
     },
     computed: {
         url() {
             return `https://api.openweathermap.org/data/2.5/onecall?lat=${this.latitude}&lon=${this.longitude}&exclude=hourly&appid=${this.api_token}&lang=${this.lang}&units=${this.units}`;
-        },
-        iconUrl() {
-            return `http://openweathermap.org/img/wn/${this.icon}@2x.png`;
-        },
-        dayTemp() {
-            if (this.currentDay.temp.day) {
-                const roundValueOfTempOfDay = Math.round(
-                    this.currentDay.temp.day
-                );
-                const stringValueOfTemp = String(roundValueOfTempOfDay);
-                if (stringValueOfTemp.length >= 2) {
-                    return stringValueOfTemp.split("");
-                }
-                return [stringValueOfTemp];
-            } else {
-                return ["", ""];
-            }
-        },
-        // using computed better than using methods because it caches the value.
-        minTemp() {
-            return Math.round(this.currentDay.temp.min);
-        },
-        maxTemp() {
-            return Math.round(this.currentDay.temp.min);
-        },
-        windSpeed() {
-            return Math.round(this.currentDay.wind_speed);
         },
     },
     async mounted() {
@@ -84,8 +87,11 @@ export default {
             this.weekDays = data.daily;
             this.currentDay = data.daily[0];
             console.log(this.currentDay);
-            this.icon = this.currentDay.weather[0].icon;
         },
+        changeCurrentDay(index) {
+            this.index = index;
+            this.currentDay = this.weekDays[index];
+        }
     },
 };
 </script>
