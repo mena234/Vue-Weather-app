@@ -23,8 +23,8 @@
                     <div
                         class="d-flex flex-column justify-space-between mr-3 text-right"
                     >
-                        <div class="mb-2">{{ maxTemp }}°C</div>
-                        <div class="grey--text">{{ minTemp }}°C</div>
+                        <div class="mb-2">{{ maxTemp | celsius }}</div>
+                        <div class="grey--text">{{ minTemp | celsius }}</div>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                         <span>{{ windSpeed }}m/s</span>
                     </div>
                 </div>
-                <div class="text-h2 mt-3">{{ currentTemp }}°C</div>
+                <div class="text-h2 mt-3">{{ currentTemp | celsius }}</div>
             </div>
         </v-expansion-panel-content>
     </v-expansion-panel>

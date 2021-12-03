@@ -33,7 +33,7 @@
                         {{ dayTemp[0] }}
                     </div>
                     <div class="text-caption" style="grid-area: 3 / 1 / 4 / 2">
-                        {{ maxTemp }}°C
+                        {{ maxTemp | celsius }}
                     </div>
                     <div class="text-h3 pt-2" style="grid-area: 1 / 2 / 4 / 3">
                         {{ dayTemp[1] }}
@@ -42,7 +42,7 @@
                         class="text-caption grey--text"
                         style="grid-area: 3 / 2 / 4 / 3"
                     >
-                        {{ minTemp }}°C
+                        {{ minTemp | celsius }}
                     </div>
                     <div class="text-h6 pt-2" style="grid-area: 1 / 3 / 2 / 4">
                         °C

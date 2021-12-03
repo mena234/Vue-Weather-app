@@ -11,6 +11,11 @@ Vue.use(VueGoogleMaps, {
   },
  
 })
+
+Vue.filter('celsius', function (value) {
+  return `${value}°C`
+})
+
 Vue.config.productionTip = false
 
 new Vue({
