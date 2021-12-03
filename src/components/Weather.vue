@@ -1,14 +1,10 @@
 <template>
     <div>
-        <WeatherMobileScreen v-if="$vuetify.breakpoint.mobile"
-        :currentDate="currentDate"
-        :description="description"
-        :iconUrl="iconUrl"
-        :maxTemp="maxTemp"
-        :minTemp="minTemp"
-        :precipitation="precipitation"
-        :humidity="humidity"
-        :windSpeed="windSpeed"></WeatherMobileScreen>
+        <WeatherMobileScreen
+            v-if="$vuetify.breakpoint.mobile"
+            :currentDate="currentDate"
+            :weekDays="weekDays"
+        ></WeatherMobileScreen>
         <v-container class="grey lighten-4 mt-10" v-else>
             <v-row class="ma-1 white rounded-lg main-row align-center">
                 <v-expansion-panels>
@@ -39,14 +35,14 @@
 import axios from "axios";
 import WeatherDetails from "./WeatherDetails.vue";
 import WeekDaysWeather from "./WeekDaysWeather.vue";
-import roundNumberMixin from '@/mixins/roundNumberMixin'
-import WeatherMobileScreen from './WeatherMobileScreen.vue';
+import roundNumberMixin from "@/mixins/roundNumberMixin";
+import WeatherMobileScreen from "./WeatherMobileScreen.vue";
 export default {
     mixins: [roundNumberMixin],
     components: {
         WeatherDetails,
         WeekDaysWeather,
-        WeatherMobileScreen
+        WeatherMobileScreen,
     },
     data() {
         return {
@@ -93,32 +89,31 @@ export default {
             return `https://api.openweathermap.org/data/2.5/onecall?lat=${this.latitude}&lon=${this.longitude}&exclude=hourly&appid=${this.api_token}&lang=${this.lang}&units=${this.units}`;
         },
         currentDate() {
-            return this.index === 0 ? "Today" : this.currentDate
+            return this.index === 0 ? "Today" : new Date(this.currentDay.dt * 1000).toDateString();
         },
         description() {
-            return this.currentDay.weather[0].description
+            return this.currentDay.weather[0].description;
         },
         minTemp() {
-            return this.roundNumber(this.currentDay.temp.min)
+            return this.roundNumber(this.currentDay.temp.min);
         },
         maxTemp() {
-            return this.roundNumber(this.currentDay.temp.max)
+            return this.roundNumber(this.currentDay.temp.max);
         },
         precipitation() {
-            return this.roundNumber(this.currentDay.pop * 100)
+            return this.roundNumber(this.currentDay.pop * 100);
         },
         humidity() {
-            return this.currentDay.humidity
+            return this.currentDay.humidity;
         },
         windSpeed() {
-            return this.roundNumber(this.currentDay.wind_speed)
+            return this.roundNumber(this.currentDay.wind_speed);
         },
         iconUrl() {
             return `http://openweathermap.org/img/wn/${this.currentDay.weather[0]?.icon}@2x.png`;
         },
     },
     async mounted() {
-        console.log(this.windowWidth);
         if (window.navigator && window.navigator.geolocation) {
             window.navigator.geolocation.getCurrentPosition(
                 async (position) => {
