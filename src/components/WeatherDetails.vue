@@ -1,6 +1,6 @@
 <template>
     <v-row>
-        <v-col xl="2" lg="2" md="3" sm="4">
+        <v-col xl="2" lg="3" md="3" sm="4">
             <v-row>
                 <v-col lg="6" class="pa-0 d-flex align-center">
                     <v-img
@@ -27,7 +27,7 @@
                 <v-col
                     lg="4" xl="4"
                     class="pa-0"
-                    style="display: grid; grid-template: 3fr / 3fr"
+                    style="display: grid; grid-template-columns: 1fr fit-content(100px) 1fr; grid-template-rows: 3fr"
                 >
                     <div class="text-h3 pt-2" style="grid-area: 1 / 1 / 3 / 2">
                         {{ dayTemp[0] }}
@@ -54,7 +54,7 @@
         <div style="height: 80px">
             <v-divider vertical></v-divider>
         </div>
-        <v-col lg="10" xl="10" md="9" sm="8" class="d-flex pa-0">
+        <v-col xl="10" lg="9" md="9" sm="8" class="d-flex pa-0">
             <v-col lg="3" xl="3" sm="6" class="d-flex flex-column">
                 <v-row class="pa-0 ma-0 text-body-2">
                     <span class="grey--text mr-1">Precipitation: </span>
