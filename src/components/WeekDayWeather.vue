@@ -18,7 +18,7 @@ export default {
             return `http://openweathermap.org/img/wn/${this.weekDay.weather[0]?.icon}@2x.png`;
         },
         dayName() {
-            return new Date(this.weekDay.dt * 1000).toDateString().split(' ')[0];
+            return new Date(this.weekDay.dt * 1000).toLocaleDateString('de-DE', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' }).split('.')[0];
         },
     },
     mounted() {},

@@ -57,21 +57,21 @@
         <v-col xl="10" lg="9" md="9" sm="8" class="d-flex pa-0">
             <v-col lg="3" xl="3" sm="6" class="d-flex flex-column">
                 <v-row class="pa-0 ma-0 text-body-2">
-                    <span class="grey--text mr-1">Precipitation: </span>
+                    <span class="grey--text mr-1">{{ $t('precipitation')}}: </span>
                     <span>{{ precipitation }}%</span>
                 </v-row>
                 <v-row class="pa-0 ma-0 text-body-2">
-                    <span class="grey--text mr-1">Humidity: </span>
+                    <span class="grey--text mr-1">{{ $t('humidity')}}: </span>
                     <span>{{ humidity }}%</span>
                 </v-row>
                 <v-row class="pa-0 ma-0 text-body-2">
-                    <span class="grey--text mr-1">Wind: </span>
+                    <span class="grey--text mr-1">{{ $t('wind')}}: </span>
                     <span>{{ windSpeed }}m/s</span>
                 </v-row>
             </v-col>
             <v-spacer></v-spacer>
             <v-col lg="3" xl="3" sm="6" class="d-flex flex-column align-center text-body-6 mt-1">
-                <v-row class="pa-0 ma-0 font-weight-black">CITY NAME</v-row>
+                <v-row class="pa-0 ma-0 font-weight-black">{{ $t('cityName') }}</v-row>
                 <v-row class="pa-0 ma-0">{{ currentDate }}</v-row>
                 <v-row class="pa-0 ma-0">{{ description }}</v-row>
             </v-col>

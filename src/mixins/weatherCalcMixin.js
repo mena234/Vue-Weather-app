@@ -1,7 +1,7 @@
 export default {
     computed: {
         currentDate() {
-            return this.index === 0 ? "Today" : new Date(this.currentDay.dt * 1000).toDateString();
+            return this.index === 0 ? this.$t('today') : new Date(this.currentDay.dt * 1000).toLocaleDateString('de-DE', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' });
         },
         description() {
             return this.currentDay.weather[0].description;

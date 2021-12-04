@@ -43,12 +43,12 @@ export default {
         WeekDaysWeather,
         WeatherMobileScreen,
     },
+    props: ["lang"],
     data() {
         return {
             latitude: "49.898260",
             longitude: "8.526780",
             api_token: process.env.VUE_APP_API_TOKEN,
-            lang: "en",
             icon: "",
             weekDays: [],
             units: "metric",
@@ -113,6 +113,11 @@ export default {
             this.currentDay = this.weekDays[index];
         },
     },
+    watch: {
+        async url() {
+            await this.setInitialData()
+        }
+    }
 };
 </script>
 
