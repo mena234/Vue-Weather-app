@@ -86,7 +86,6 @@ import weatherCalcMixin from '@/mixins/weatherCalcMixin'
 export default {
     mixins: [roundNumberMixin, weatherCalcMixin],
     props: {
-        weekDays: Array,
         currentDay: Object,
         index: Number
     },

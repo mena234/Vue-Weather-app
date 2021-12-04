@@ -45,8 +45,8 @@ export default {
     },
     data() {
         return {
-            latitude: "52.520008",
-            longitude: "13.404954",
+            latitude: "49.898260",
+            longitude: "8.526780",
             api_token: process.env.VUE_APP_API_TOKEN,
             lang: "en",
             icon: "",
