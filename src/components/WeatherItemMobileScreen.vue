@@ -34,15 +34,15 @@
             <div class="d-flex justify-space-between align-center">
                 <div class="d-flex flex-column mt-3 text-body-2">
                     <div>
-                        <span class="grey--text mr-1">Precipitation: </span>
+                        <span class="grey--text mr-1">{{ $t('precipitation')}}: </span>
                         <span>{{ precipitation }}%</span>
                     </div>
                     <div>
-                        <span class="grey--text mr-1">Humidity: </span>
+                        <span class="grey--text mr-1">{{ $t('humidity')}}: </span>
                         <span>{{ humidity }}%</span>
                     </div>
                     <div>
-                        <span class="grey--text mr-1">Wind: </span>
+                        <span class="grey--text mr-1">{{ $t('wind') }}: </span>
                         <span>{{ windSpeed }}m/s</span>
                     </div>
                 </div>

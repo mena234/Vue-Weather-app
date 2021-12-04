@@ -109,7 +109,6 @@ export default {
             const { data } = response;
             this.weekDays = data.daily;
             this.currentDay = data.daily[0];
-            console.log(this.currentDay);
         },
         changeCurrentDay(index) {
             this.index = index;
