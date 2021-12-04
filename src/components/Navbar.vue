@@ -30,7 +30,7 @@ export default {
         return {
             languages: [
                 {
-                    name: "Germany",
+                    name: "Deutsche",
                     value: "de",
                     date: "de-DE",
                 },
