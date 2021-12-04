@@ -34,10 +34,8 @@
 import axios from "axios";
 import WeatherDetails from "./WeatherDetails.vue";
 import WeekDaysWeather from "./WeekDaysWeather.vue";
-import roundNumberMixin from "@/mixins/roundNumberMixin";
 import WeatherMobileScreen from "./WeatherMobileScreen.vue";
 export default {
-    mixins: [roundNumberMixin],
     components: {
         WeatherDetails,
         WeekDaysWeather,

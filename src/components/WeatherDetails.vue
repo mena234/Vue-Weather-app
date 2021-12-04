@@ -80,11 +80,10 @@
 </template>
 
 <script>
-import roundNumberMixin from '@/mixins/roundNumberMixin';
 import weatherCalcMixin from '@/mixins/weatherCalcMixin'
 
 export default {
-    mixins: [roundNumberMixin, weatherCalcMixin],
+    mixins: [weatherCalcMixin],
     props: {
         currentDay: Object,
         index: Number

@@ -7,9 +7,8 @@
 </template>
 
 <script>
-import roundNumberMixin from '@/mixins/roundNumberMixin'
+import roundNumber from '@/helpers/roundNumber';
 export default {
-    mixins: [roundNumberMixin],
     props: {
         weekDay: Object,
     },
@@ -25,6 +24,9 @@ export default {
         dayName() {
             return new Date(this.weekDay.dt * 1000).toLocaleDateString(this.lang, { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' }).split(',')[0];
         },
+    },
+    methods: {
+        roundNumber
     },
     mounted() {
         this.$root.$on('langChange', (result) => {

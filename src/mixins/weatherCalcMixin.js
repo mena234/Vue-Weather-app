@@ -1,3 +1,4 @@
+import roundNumber from '@/helpers/roundNumber.js';
 export default {
     data() {
         return {
@@ -17,19 +18,19 @@ export default {
             return this.currentDay.weather[0].description;
         },
         minTemp() {
-            return this.roundNumber(this.currentDay.temp.min);
+            return roundNumber(this.currentDay.temp.min);
         },
         maxTemp() {
-            return this.roundNumber(this.currentDay.temp.max);
+            return roundNumber(this.currentDay.temp.max);
         },
         precipitation() {
-            return this.roundNumber(this.currentDay.pop * 100);
+            return roundNumber(this.currentDay.pop * 100);
         },
         humidity() {
             return this.currentDay.humidity;
         },
         windSpeed() {
-            return this.roundNumber(this.currentDay.wind_speed);
+            return roundNumber(this.currentDay.wind_speed);
         },
         iconUrl() {
             return `http://openweathermap.org/img/wn/${this.currentDay.weather[0]?.icon}@2x.png`;

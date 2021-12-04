@@ -53,17 +53,17 @@
 </template>
 
 <script>
-import roundNumberMixin from '@/mixins/roundNumberMixin'
 import weatherCalcMixin from '@/mixins/weatherCalcMixin'
+import roundNumber from '@/helpers/roundNumber';
 export default {
-    mixins: [roundNumberMixin, weatherCalcMixin],
+    mixins: [weatherCalcMixin],
     props: {
         currentDay: Object,
         index: Number
     },
     computed: {
         currentTemp() {
-            return this.roundNumber(this.currentDay.temp.day)
+            return roundNumber(this.currentDay.temp.day)
         },
     },
 };

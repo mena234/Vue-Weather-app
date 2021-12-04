@@ -25,21 +25,11 @@
 
 <script>
 import i18n from "@/plugins/i18n";
+import languages from '@/constants/languages';
 export default {
     data() {
         return {
-            languages: [
-                {
-                    name: "Deutsche",
-                    value: "de",
-                    date: "de-DE",
-                },
-                {
-                    name: "English",
-                    value: "en",
-                    date: "en-US",
-                },
-            ],
+            languages
         };
     },
     methods: {
