@@ -1,19 +1,30 @@
 <template>
     <v-toolbar class="toolbar">
         <v-toolbar-title>
-            {{ $t('weatherApp') }}
+            {{ $t("weatherApp") }}
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <div style="width: 100px; height: 20px">
-            <select name="lang" value="de" class="lang" @change="changeLanguage">
-                <option v-for="(lang, index) in languages" :key="index" :value="lang.value">{{ lang.name }}</option>
+            <select
+                name="lang"
+                value="de"
+                class="lang"
+                @change="changeLanguage"
+            >
+                <option
+                    v-for="(lang, index) in languages"
+                    :key="index"
+                    :value="lang.value"
+                >
+                    {{ lang.name }}
+                </option>
             </select>
         </div>
     </v-toolbar>
 </template>
 
 <script>
-import i18n from '@/plugins/i18n';
+import i18n from "@/plugins/i18n";
 export default {
     data() {
         return {
@@ -21,20 +32,26 @@ export default {
                 {
                     name: "Germany",
                     value: "de",
+                    date: "de-DE",
                 },
                 {
                     name: "English",
-                    value: "en"
+                    value: "en",
+                    date: "en-US",
                 },
             ],
         };
     },
     methods: {
-        changeLanguage({ target: { value } } ) {
-            this.$emit('langChange', value);
+        changeLanguage({ target: { value } }) {
+            const date = this.languages.find(l => l.value === value).date;
+            this.$root.$emit("langChange", {
+                date,
+                value
+            });
             i18n.locale = value;
-        }
-    }
+        },
+    },
 };
 </script>
 

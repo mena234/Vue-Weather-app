@@ -91,7 +91,7 @@ export default {
     },
     data() {
         return {
-            icon: ""
+            icon: "",
         };
     },
     computed: {
@@ -109,7 +109,8 @@ export default {
                 return [""];
             }
         },
-    }
+    },
+
 };
 </script>
 

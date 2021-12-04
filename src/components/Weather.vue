@@ -43,7 +43,6 @@ export default {
         WeekDaysWeather,
         WeatherMobileScreen,
     },
-    props: ["lang"],
     data() {
         return {
             latitude: "49.898260",
@@ -52,6 +51,7 @@ export default {
             icon: "",
             weekDays: [],
             units: "metric",
+            lang: "de",
             currentDay: {
                 clouds: "",
                 dew_point: 0,
@@ -89,6 +89,9 @@ export default {
         },
     },
     async mounted() {
+        this.$root.$on('langChange', (result) => {
+            this.lang = result.value;
+        })
         if (window.navigator && window.navigator.geolocation) {
             window.navigator.geolocation.getCurrentPosition(
                 async (position) => {

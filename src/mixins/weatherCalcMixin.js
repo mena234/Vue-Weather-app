@@ -1,7 +1,17 @@
 export default {
+    data() {
+        return {
+            lang: "de-DE"
+        }
+    },
+    mounted() {
+        this.$root.$on('langChange', (result) => {
+            this.lang = result.date;
+        })
+    },
     computed: {
         currentDate() {
-            return this.index === 0 ? this.$t('today') : new Date(this.currentDay.dt * 1000).toLocaleDateString('de-DE', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' });
+            return this.index === 0 ? this.$t('today') : new Date(this.currentDay.dt * 1000).toLocaleDateString(this.lang, { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
         },
         description() {
             return this.currentDay.weather[0].description;

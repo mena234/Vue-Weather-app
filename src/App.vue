@@ -1,8 +1,8 @@
 <template>
     <v-app>
-        <Navbar @langChange="langChange"></Navbar>
+        <Navbar></Navbar>
         <v-main>
-            <Weather :lang="lang" />
+            <Weather />
         </v-main>
     </v-app>
 </template>
@@ -22,9 +22,6 @@ export default {
       lang: 'de'
     }),
     methods: {
-      langChange(value) {
-        this.lang = value;
-      }
     }
 };
 </script>

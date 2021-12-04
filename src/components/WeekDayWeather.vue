@@ -13,15 +13,24 @@ export default {
     props: {
         weekDay: Object,
     },
+    data() {
+        return {
+            lang: 'de-DE'
+        }
+    },
     computed: {
         iconUrl() {
             return `http://openweathermap.org/img/wn/${this.weekDay.weather[0]?.icon}@2x.png`;
         },
         dayName() {
-            return new Date(this.weekDay.dt * 1000).toLocaleDateString('de-DE', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' }).split('.')[0];
+            return new Date(this.weekDay.dt * 1000).toLocaleDateString(this.lang, { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' }).split(',')[0];
         },
     },
-    mounted() {},
+    mounted() {
+        this.$root.$on('langChange', (result) => {
+            this.lang = result.date;
+        })
+    },
 };
 </script>
 
